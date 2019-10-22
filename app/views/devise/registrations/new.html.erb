@@ -1,0 +1,57 @@
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">
+  		<h5 class="panel-title">新規登録フォーム</h5>
+  	</div>
+  	<div class="panel-body">
+      <div class="field">
+        <%= f.label :email, 'メールアドレス' %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div></br>
+
+      <div class="field">
+        <%= f.label :password, 'パスワード' %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上の英数字)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div></br>
+
+      <div class="field">
+        <%= f.label :password_confirmation, 'パスワード確認' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div></br>
+
+      <div class="field">
+        <label for='name'>お名前</label></br>
+        <%= f.text_field :first_name, autofocus: true, :placeholder => "姓" %><%= f.text_field :last_name, autofocus: true, :placeholder => "名" %>
+      </div></br>
+
+      <div class="field">
+        <label><%= f.radio_button :gender, "男" %> 男</label>
+        <label><%= f.radio_button :gender, "女" %> 女</label>
+      </div></br>
+
+      <div class="field">
+        <%= f.label :birthday, '生年月日' %>
+        <%= f.date_select :birthday, start_year: 1940, end_year: Time.current.year, use_month_numbers: true %>
+      </div></br>
+
+      <div class="field">
+        <%= f.label :telephone, '電話番号' %>
+        <%= f.telephone_field :telephone, autofocus: true %>
+      </div></br>
+
+      <div class="actions">
+        <%= f.submit "登録する", class: 'btn btn-primary btn-lg' %>
+      </div></br>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+
+  	</div>
+  </div>

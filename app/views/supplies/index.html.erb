@@ -1,0 +1,25 @@
+
+<h4>商品検索</h4>
+<div class='search'>
+  <%= form_with url: supplies_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit '検索' %>
+  <% end %>
+</div></br>
+
+<div class='card-deck'>
+  <% @supplies.each do |supply| %>
+  <% if supply.sales_status != '売り切れ' %>
+    <%= link_to supply_path(supply.id) do %>
+      <% supply.images.each do |image| %>
+      <div class="card" style="width: 25rem;">
+        <%= attachment_image_tag image, :supply_image, :fill, 200, 200, class:"card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title"><%= supply.title %></h4>
+        </div>
+      </div>
+      <% end %>
+  <% end %>
+  <% end %>
+</div>

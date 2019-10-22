@@ -1,0 +1,28 @@
+<h2><取引履歴></h2></br>
+<div class='container'>
+  <% @histories.each do |history| %>
+    <% history.supply.images.each do |image| %>
+        <div class="card">
+          <div class="card-header">
+            <p>注文日: <%= history.created_at.strftime('%Y/%m/%d') %>  配送先: <%= history.shipping %></p>
+          </div>
+          <div class="card-body">
+            <div calss='card'>
+              <div class='row'>
+                <div class='col-md-3'>
+                  <%= attachment_image_tag image, :supply_image, :fill, 150, 150, class:"product-image" %>
+                </div>
+                <div class='col-md-6'>
+                  <p> 取引相手 <%= link_to history.supporter.first_name, user_path(history.supporter.id) %></p>
+                  <p>【商品名】<%= history.supply.title %></p>
+                </div>
+                <div class='col-md-3'>
+                  <p>配送状況:<%= history.receipt_status %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+    <% end %>
+  <% end %>
+</div>

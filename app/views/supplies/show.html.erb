@@ -1,0 +1,69 @@
+<h3><商品詳細></h3>
+
+<h4>販売状況</h4>
+<p><%= @supply.sales_status %><p>
+
+<div class='image-box'>
+  <% @supply.images.each do |image| %>
+    <%= attachment_image_tag image, :supply_image, :fill, 400, 400, class: 'supply-image' %>
+  <% end %>
+</div></br>
+
+<table class="table table-bordered">
+  <tr>
+    <td>物資名</td>
+    <td><%= @supply.title %></td>
+  </tr>
+  <tr>
+    <td>カテゴリー</td>
+    <td>
+      <% @supply.categories.each do |category| %>
+       <%= category.category_name %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>物資状態</td>
+    <td><%= @supply.condition %></td>
+  </tr>
+  <tr>
+    <td>サイズ</td>
+    <td><%= @supply.size %></td>
+  </tr>
+  <tr>
+    <td>発送までの日数</td>
+    <td><%= @supply.shipping_preparation_period %>日</td>
+  </tr>
+</table></br>
+
+<h4>商品説明</h4>
+
+<div class="well well-lg">
+  <%= @supply.comment %>
+</div></br>
+
+
+<div class='action-box'>
+  <% if @supply.user_id == current_user.id %>
+    <%= link_to '編集する', edit_supply_path(@supply.id), class:'btn btn-warning' %>
+    <%= link_to '削除する', supply_path(@supply.id), class:'btn btn-danger'%>
+  <% else %>
+    <%= link_to '依頼する', new_supply_history_path(@supply), class:'btn btn-primary btn-lg btn-block' %>
+ <% end %>
+</div></br>
+
+<div class='comment-field'>
+  <table class='table' style='text-align: center;'>
+    <% @comments.each do |comment| %>
+    <tr>
+      <td><%= attachment_image_tag comment.user, :user_image, :fill, 50, 50 %></br><%= comment.user.first_name %></td>
+      <td><%= comment.body %></td>
+      <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= form_for [@supply, @comment] do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit 'コメントする', class:'btn btn-success' %>
+  <% end %>
+</div>

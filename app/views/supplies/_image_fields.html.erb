@@ -1,0 +1,8 @@
+<div class="nested-fields form-inline">
+  <div class="form-group">
+    <%= f.label :supply_image, "写真" %>
+    <%= f.attachment_field :supply_image, class:"input-default" %>
+
+    <%= link_to_remove_association "写真を削除", f, class: "remove-link" %>
+  </div>
+</div>

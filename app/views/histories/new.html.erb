@@ -1,0 +1,35 @@
+<%= form_for [@supply, @history] do |f| %>
+  <div class='row'>
+    <h4><配送先></h4>
+    <div class='shipping'>
+      <%= f.select :shipping, current_user.addresses.all.map {|address| address.prefecture + address.municipal_district + address.after_address}%>
+    </div>
+  </div></br>
+    <div class='row'>
+      <h4><依頼内容確認></h4>
+    </div>
+      <div class="col-md-3">
+        <% @supply.images.each do |image| %>
+          <%= attachment_image_tag image, :supply_image, :fill, 200, 200, class:"product-image" %>
+        <% end %>
+     </div>
+    <div class="col-md-6">
+      <h5 class='title-format'>
+        　商品名: <%= @supply.title %>
+      </h5></br>
+      <h5 class='condition-format'>
+       　商品状態: <%= @supply.condition %>
+      </h5></br>
+       <h5 class='size-format'>
+        　サイズ: <%= @supply.size %>
+      </h5></br>
+      <h5 class='date-format'>
+       　発送までの日数: <%= @supply.shipping_preparation_period %>日
+      </h5></br>
+      <h5 class='comment-format'>
+        コメント: <%= @supply.comment %>
+      </h5>
+     </div>
+     <%= f.submit '依頼確定', class: 'btn btn-primary btn-lg btn-block' %>
+ <% end %>
+ </div>

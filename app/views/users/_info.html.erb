@@ -1,0 +1,34 @@
+<table class="table">
+
+  <tr><%= attachment_image_tag user, :user_image, fallback: "no-image.jpg", size:'150x150' %><tr>
+
+  <tr>
+    <th>お名前</th>
+    <th><%= user.first_name %><%= user.last_name %></th>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <th><%= user.gender %></th>
+  </tr>
+  <tr>
+    <th>自己紹介文</th>
+    <th><%= user.introduction %></th>
+  </tr>
+
+</table>
+
+<div class="row">
+  <%= link_to "　プロフィールを編集", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+</div></br>
+
+<div class="row">
+  <%= link_to "　物資を投稿", new_supply_path , class: "col-xs-12 btn btn-default glyphicon glyphicon-plus" %>
+</div></br>
+
+<div class="row">
+  <%= link_to "　配送先情報", user_addresses_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-road" %>
+</div></br>
+
+<div class="row">
+  <%= link_to "　取引情報", supply_receipt_path, class: "col-xs-12 btn btn-default glyphicon glyphicon-book" %>
+</div></br>

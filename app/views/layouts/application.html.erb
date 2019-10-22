@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kimochi</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample7">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            KIMOCHI
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarEexample7">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li class="item"><%=link_to 'ホーム', supplies_path %></li>
+              <li class="item"><%=link_to 'マイページ', user_path(current_user.id) %></li>
+              <li class="item"><%=link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+          <p class="navbar-text navbar-right">ようこそ<%= current_user.first_name %>さん。</p>
+            <% else %>
+              <li class="item"><%=link_to 'ホーム', supplies_path %></li>
+              <li class="item"><%=link_to 'サービス概要', '#' %></li>
+              <li class="item"></li>
+          </ul>
+            <% end %>
+        </div>
+      </div>
+    </nav>
+    <div class='container content'>
+     <%= yield %>
+    </div>
+  </body>
+</html>

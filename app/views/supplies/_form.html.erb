@@ -1,0 +1,52 @@
+<div class='row'>
+  <div class='col-md-12'>
+
+  <%= form_for(supply) do |f| %>
+
+  <div class="form-group">
+    <%= f.fields_for :images do |image| %>
+      <%= render "image_fields", f: image %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "写真を追加", f, :images, class: "add-link"  %>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <%= f.fields_for :appointments do |appointment| %>
+      <%= render "appointment_fields", f: appointment %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "カテゴリーを追加", f, :appointments, class: "add-link"  %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :condition, "物資状態" %>
+    <%= f.text_field :condition, class:"input-default" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :size, "サイズ" %>
+    <%= f.text_field :size, class:"input-default" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title, "物資名" %>
+    <%= f.text_field :title, class:"input-default" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comment, "物資の説明" %></br>
+    <%= f.text_area :comment, class:"input-default" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :shipping_preparation_period, "発送までの日数" %></br>
+    <%= f.text_field :shipping_preparation_period, class:"input-default" %>
+  </div>
+    <%= f.submit '投稿する' %>
+    <% end %>
+  </div>
+</div>

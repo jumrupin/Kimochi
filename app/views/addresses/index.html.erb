@@ -1,0 +1,55 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <%= render 'users/info', user: current_user %></br>
+
+    <h4><新規登録></h4>
+
+    <%= form_for [current_user, @address] do |f| %>
+    <div class="field_row">
+      <%= f.label :postal_code, "郵便番号" %></br>
+      <%= f.text_field :postal_code %>
+    </div>
+    <div class="field_row">
+      <%= f.label :prefecture, "都道府県" %></br>
+      <%= f.text_field :prefecture %>
+    </div>
+    <div class="field_row">
+      <%= f.label :municipal_district, "市区町村" %></br>
+      <%= f.text_field :municipal_district %>
+    </div>
+    <div class="field_row">
+      <%= f.label :after_address, "以降の住所" %></br>
+      <%= f.text_area :after_address %>
+    </div>
+    <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block" %>
+    <% end %></br>
+  </div>
+
+
+  <div class="col-xs-9">
+      <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>都道府県</th>
+        <th>市区町村</th>
+        <th>以降の住所</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.prefecture %></td>
+            <td><%= address.municipal_district%></td>
+            <td><%= address.after_address %></td>
+            <td><%= link_to '編集', edit_user_address_path(current_user, address.id), class:'btn btn-warning' %></td>
+            <td><%= link_to '削除', user_address_path(current_user, address.id), method: :delete, class:'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

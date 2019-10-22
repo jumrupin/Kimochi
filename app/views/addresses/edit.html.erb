@@ -1,0 +1,23 @@
+<h3><住所更新></h3>
+
+<div class='address'>
+  <%= form_for [current_user, @address] do |f| %>
+    <div class="field_row">
+      <%= f.label :postal_code, "郵便番号" %></br>
+      <%= f.text_field :postal_code %>
+    </div>
+    <div class="field_row">
+      <%= f.label :prefecture, "都道府県" %></br>
+      <%= f.text_field :prefecture %>
+    </div>
+    <div class="field_row">
+      <%= f.label :municipal_district, "市区町村" %></br>
+      <%= f.text_field :municipal_district %>
+    </div>
+    <div class="field_row">
+      <%= f.label :after_address, "以降の住所" %></br>
+      <%= f.text_area :after_address %>
+    </div>
+    <%= f.submit "更新", class: "btn-primary btn-default" %>
+  <% end %>
+</div>
