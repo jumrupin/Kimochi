@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :passive_histories, class_name: 'History', foreign_key: "victim_id"
   has_many :supporter_id, through: :passive_historiess
   has_many :addresses
+  has_many :likes, dependent: :destroy
+  has_many :likes_supplies, through: :likes, source: :supply
 
   attachment :user_image, destroy: false
 
@@ -21,6 +23,11 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
+
+  def already_liked?(supply)
+    self.likes.exists?(supply_id: supply.id)
+  end
 
 
 end

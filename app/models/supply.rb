@@ -5,7 +5,8 @@ class Supply < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :appointments
   has_many :categories, through: :appointments
-  has_one :supply
+  has_one :history
+  has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :appointments, allow_destroy: true
   accepts_nested_attributes_for :images, allow_destroy: true
@@ -19,7 +20,6 @@ class Supply < ApplicationRecord
       Supply.all
     end
   end
-
 
 
 end

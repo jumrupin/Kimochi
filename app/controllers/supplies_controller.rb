@@ -9,6 +9,7 @@ class SuppliesController < ApplicationController
     @supply = Supply.find(params[:id])
     @comments = @supply.comments.all
     @comment = Comment.new
+    @like = Like.new
   end
 
   def create
