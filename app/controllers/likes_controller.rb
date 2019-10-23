@@ -9,4 +9,8 @@ class LikesController < ApplicationController
     @like.destroy
     redirect_to supply_path(params[:supply_id])
   end
+
+  def index
+    @like_supplies = current_user.likes_supplies.all
+  end
 end
