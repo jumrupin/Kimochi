@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'supplies#index'
+
   devise_for :users
 
   get 'supply/thanks' => 'histories#thank'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :supplies do
+  resources :supplies, only: [:new, :destroy, :update, :edit, :create, :show] do
     resources :comments
     resources :histories
     resources :likes, only: [:create, :destroy]

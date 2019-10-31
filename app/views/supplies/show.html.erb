@@ -8,21 +8,7 @@
     <%= attachment_image_tag image, :supply_image, :fill, 400, 400, class: 'supply-image' %>
   <% end %>
 </div></br>
-  <% if current_user.already_liked?(@supply) %>
-  <li>
-    <%= link_to supply_like_path(@supply), method: :delete do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    <% end %>
-    <%= @supply.likes.count %> いいね
-  </li>
-<% else %>
-  <li>
-    <%= link_to supply_likes_path(@supply), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-    <% end %>
-    <%= @supply.likes.count %> いいね
-  </li>
-<% end %>
+<%= render 'supplies/like', supply: @supply %>
 
 <table class="table table-bordered">
   <tr>
