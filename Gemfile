@@ -71,7 +71,7 @@ gem "refile-mini_magick"
 
 gem 'paranoia'
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 gem 'devise-i18n'
