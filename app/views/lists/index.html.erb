@@ -1,0 +1,14 @@
+<h1>欲しいもの投稿</h1>
+
+  <%= form_for @list, url: lists_create_path(current_user) do |f| %>
+    <%= f.text_field :want %>
+    <%= f.submit '追加' %>
+  <% end %></br>
+
+<div class='list-box'>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= list.want %>  </li>
+    <% end %>
+  </ul>
+</div>

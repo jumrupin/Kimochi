@@ -11,13 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require font-awesome
- *= require_tree .
- *= require_self
  */
- @import "font-awesome";
-
- @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
 
  * {
    margin: 0;
@@ -25,20 +22,15 @@
    box-sizing: border-box;
  }
 
-// ヘッダー
- header {
-   background-color: #BBFFFF;
- }
+main {
+  margin-top: 70px;
+}
+//topページの商品レイアウト
+.home-items{
+  margin-top: 5px;
+}
 
- .Kimochi {
-   font-family: 'Londrina Shadow';
-   font-size: 40px;
- }
-
- li {
-   display: inline-block;
- }
-
- .content {
-   margin-top: 70px;
- }
+//いいね<li>の点を消す
+li {
+  list-style: none;
+}

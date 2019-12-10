@@ -21,12 +21,23 @@ class HistoriesController < ApplicationController
   end
 
   def receipt
-    @histories = current_user.passive_histories.all
+    @histories_passive = current_user.passive_histories.all
+    @histories_active = current_user.active_histories.all
+  end
+
+  def label
+    @history = History.find(params[:hisotories_id])
+  end
+
+  def receipt_status
+    @history = History.find(params[:id])
+    @history.update(history_params)
+    redirect_to supply_receipt_path(current_user.id)
   end
 
 private
   def history_params
-    params.require(:history).permit(:shipping)
+    params.require(:history).permit(:shipping, :receipt_status)
   end
 
   def supply_params

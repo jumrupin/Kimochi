@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_140449) do
+ActiveRecord::Schema.define(version: 2019_12_02_050856) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(version: 2019_10_22_140449) do
     t.integer "victim_id"
     t.integer "supply_id"
     t.string "shipping"
-    t.string "receipt_status", default: "準備中"
+    t.integer "receipt_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["receipt_status"], name: "index_histories_on_receipt_status"
   end
 
   create_table "images", force: :cascade do |t|
@@ -67,6 +68,13 @@ ActiveRecord::Schema.define(version: 2019_10_22_140449) do
     t.datetime "updated_at", null: false
     t.index ["supply_id"], name: "index_likes_on_supply_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "want"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "supplies", force: :cascade do |t|

@@ -1,3 +1,13 @@
-<% @like_supplies.each do |supply| %>
-  <%= supply.title %>
-<% end %>
+<h2>keep一覧</h2>
+<div class='box'>
+  <% @like_supplies.each do |supply| %>
+    <% supply.images.each do |image| %>
+      <%= link_to supply_path(supply.id) do %>
+        <div class='box-content'>
+          <%= attachment_image_tag image, :supply_image, :fill, 200, 200%>
+          <p><%= supply.title %></p>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

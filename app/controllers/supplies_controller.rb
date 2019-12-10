@@ -2,6 +2,10 @@ class SuppliesController < ApplicationController
 
   def index
     @supplies = Supply.search(params[:search])
+    p @supplies
+    @supplies = @supplies.select{ |supply| supply.sales_status != '売り切れ' }
+    @supplies = Kaminari.paginate_array(@supplies).page(params[:page]).per(10)
+    p @supplies
   end
 
 
@@ -30,6 +34,9 @@ class SuppliesController < ApplicationController
   end
 
   def destroy
+    @supply = Supply.find(params[:id])
+    @supply.destroy
+    redirect_to supplies_path
   end
 
   def new

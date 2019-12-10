@@ -7,6 +7,7 @@ class Supply < ApplicationRecord
   has_many :categories, through: :appointments
   has_one :history
   has_many :likes, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   accepts_nested_attributes_for :appointments, allow_destroy: true
   accepts_nested_attributes_for :images, allow_destroy: true

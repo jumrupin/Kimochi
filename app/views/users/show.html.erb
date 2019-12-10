@@ -1,20 +1,22 @@
+
 <div class='row'>
   <div class='col-md-3'>
     <%= render 'users/info', user: @user %>
   </div>
   <div class='col-md-9'>
-      <h3><投稿一覧></h3>
+      <span>投稿一覧</span>
+      <div class='row'>
         <% @supplies.each do |supply| %>
-        <%= link_to supply_path(supply) do %>
-          <% supply.images.each do |image| %>
-            <div class="card" style="width: 20rem;">
-              <%= attachment_image_tag image, :supply_image, :fill, 194, 180, class:"card-img-top", style:'border-bottom: medium solid black;' %>
-              <div class="card-body">
-                <p class="card-text"><%= supply.title %></p>
+          <div class="col-md-3">
+            <%= link_to supply_path(supply) do %>
+              <% supply.images.each do |image| %>
+              <div class='card user-items'>
+                <%= attachment_image_tag image, :supply_image,class:"card-img" %>
               </div>
-            </div>
-          <% end %>
-          <% end %>
+              <% end %>
+             <% end %>
+          </div>
        <% end %>
+      </div>
   </div>
 </div></br>
